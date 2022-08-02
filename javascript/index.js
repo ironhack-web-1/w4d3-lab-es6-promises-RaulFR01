@@ -79,8 +79,21 @@ async function makeBroccoli() {
   document.querySelector("#broccoliImg").removeAttribute("hidden");
 }
 
-makePotatoes();
-makeStake();
-makeBroccoli();
+async function makeBroussels() {
+  for  (let i = 0; i < 9; ++i){
+    const steps = await obtainInstruction("brusselsSprouts", i);
+    document.querySelector("#brusselsSprouts").innerHTML += `<li>${steps}</li>`;
+  }
+
+  document.querySelector("#brusselsSproutsImg").removeAttribute("hidden");
+}
+
+const p1 = makePotatoes();
+const p2 = makeStake();
+const p3 = makeBroccoli();
+const p4 = makeBroussels()
+
+
+Promise.all(p1,p2,p3,p4);
 // Bonus 2 - Promise all
 // ...
